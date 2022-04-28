@@ -321,7 +321,7 @@ public:
     */
     virtual uint32_t findNearestConvexHull(const double pos[3],double &distanceToHull) = 0;
 
-protected:
+// protected:
     virtual ~IVHACD(void)
     {
     }

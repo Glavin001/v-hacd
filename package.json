@@ -1,0 +1,33 @@
+{
+  "name": "v-hacd",
+  "version": "1.0.0",
+  "description": "![Approximate convex decomposition of \"Camel\"](doc/acd.png)",
+  "main": "builds/ammo.js",
+  "type": "commonjs",
+  "//type": "module",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "cd builds && node -e \"import('./test.js')\"",
+    "test_old": "node -e \"import('./test.js')\"",
+    "build": "npm run build:lib && npm run types",
+    "build:lib": "docker-compose up --build --exit-code-from lib lib",
+    "types": "npm run types:module && npm run types:ambient",
+    "types:module": "webidl2ts -i ./ammo.idl -o ./builds/ammo.d.ts -ed -n Ammo",
+    "types:ambient": "mkdir -p ./builds/ambient/ && webidl2ts -i ./ammo.idl -o ./builds/ambient/ammo.d.ts -e -n Ammo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Glavin001/v-hacd.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Glavin001/v-hacd/issues"
+  },
+  "homepage": "https://github.com/Glavin001/v-hacd#readme",
+  "devDependencies": {
+    "webidl2ts": "github:glavin001/webidl2ts"
+  }
+}

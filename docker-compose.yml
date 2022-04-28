@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  cli:
+    build: .
+    volumes:
+      - .:/code
+    # command: bash -c "rm -f builds/ammo.* && cmake -B builds -DCLOSURE=1 -DBUILD_HACD_EXTRA=ON -DENABLE_VHACD=ON -DBUILD_BULLET_ROBOTICS_EXTRA=ON -DBUILD_EXTRAS=ON && cmake --build builds"
+    # command: bash -c "cd app/ && rm -f CMakeCache.text builds/TestVHACD && cmake -B builds -DCLOSURE=1 -DBUILD_HACD_EXTRA=ON -DENABLE_VHACD=ON -DBUILD_BULLET_ROBOTICS_EXTRA=ON -DBUILD_EXTRAS=ON && cmake --build builds"
+    # command: bash -c "cd app/ && rm -rf builds/* && cmake -B builds && cmake --build builds && ./builds/TestVHACD ./meshes/mite.obj"
+    # command: bash -c "cd app/ && rm -rf builds/* && emcmake cmake -B builds && cmake --build builds && ./builds/TestVHACD ./meshes/mite.obj"
+    # command: bash -c "cd app/ && rm -rf builds/* && emcmake cmake -B builds && cmake --build builds && node builds/TestVHACD.js ./meshes/mite.obj"
+    # command: bash -c "cd app/ && rm -rf builds/* && emcmake cmake -B builds -D CMAKE_CXX_FLAGS="-s ASSERTIONS=1 -s NODERAWFS=1" && cmake --build builds && node builds/TestVHACD.js ./meshes/mite.obj"
+# emcmake cmake -B builds -DCMAKE_CXX_FLAGS="-s ASSERTIONS=1 -s NODERAWFS=1" && cmake --build builds && node builds/TestVHACD.js ./meshes/mite.obj
+    command: ./build-cli.sh
+
+# --experimental-wasm-threads --experimental-wasm-bulk-memory
+# emcmake cmake -B builds && cmake --build builds && node --experimental-wasm-threads --experimental-wasm-bulk-memory builds/TestVHACD.js ./meshes/mite.obj
+
+  lib:
+    build: .
+    volumes:
+      - .:/code
+    command: ./build-lib.sh

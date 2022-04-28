@@ -160,6 +160,8 @@ int main(int argc,const char **argv)
 		}
 		else
 		{
+			printf("Loaded valid mesh from wavefront OBJ file:%s\n", inputFile);
+
 			for (int i=2; i<argc; i+=2)
 			{
 				const char *option = argv[i];
@@ -308,6 +310,8 @@ int main(int argc,const char **argv)
 				}
 			}
 
+			printf("Parsed args");
+
 			VHACD::IVHACD *iface = VHACD::CreateVHACD_ASYNC();
 #ifdef _MSC_VER
 			printf("Press the SPACEBAR to cancel convex decomposition before it has completed.\n");
@@ -341,6 +345,7 @@ int main(int argc,const char **argv)
 			}
 			if ( !canceled && iface->GetNConvexHulls() )
 			{
+				printf("Before saving");
 				FILE *fph = fopen("decomp.obj", "wb");
 				if ( fph )
 				{

@@ -1,0 +1,6 @@
+{
+    "cmake.sourceDirectory": "${workspaceFolder}/app",
+    "files.associations": {
+        "*.idl": "cpp"
+    }
+}
